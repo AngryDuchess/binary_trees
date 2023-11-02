@@ -5,45 +5,17 @@
  * @tree: tree to count the nodes from
  *
  * Return: number of nodes counted
- *         0 if tree is NULL
+ * 0 if tree is NULL
  */
 size_t binary_tree_nodes(const binary_tree_t *tree)
 {
-	if (!tree || (!tree->left && !tree->right))
+	if (tree == NULL)
 		return (0);
+	size_t left_children = binary_tree_nodes(tree->left);
+	size_t right_children = binary_tree_nodes(tree->right);
 
-	return (binary_tree_size(tree) - binary_tree_leaves(tree));
-}
-
-/**
- * binary_tree_size - measures the size of a binary tree
- * @tree: tree to measure the size of
- *
- * Return: size of the tree
- *         0 if tree is NULL
- */
-size_t binary_tree_size(const binary_tree_t *tree)
-{
-	if (!tree)
-		return (0);
-
-	return (binary_tree_size(tree->left) + binary_tree_size(tree->right) + 1);
-}
-
-/**
- * binary_tree_leaves - counts the leaves in a binary tree
- * @tree: tree to count the leaves from
- *
- * Return: number of leaves
- *         0 if tree is NULL
- */
-size_t binary_tree_leaves(const binary_tree_t *tree)
-{
-	if (!tree)
-		return (0);
-
-	if (!tree->left && !tree->right)
-		return (1);
-
-	return (binary_tree_leaves(tree->left) + binary_tree_leaves(tree->right));
+	if ((tree->left || tree->right))
+	/*if ((tree->left != NULL) || (tree->right != NULL))*/
+		return (left_children + right_children + 1);
+	return (left_children + right_children);
 }

@@ -1,0 +1,17 @@
+#!/usr/bin/env
+
+is_template()
+{
+        $(gcc -c -Wall -Wextra -Werror -pedantic "$1" -o plo)
+        worked=$(echo "$?")
+        if ((worked == 0))
+        then
+                echo "compiled successfully"
+        fi
+        echo "--------------------Betty--------------------------"
+        betty $1
+        if [ -f plo ];
+        then
+                rm plo
+        fi
+}

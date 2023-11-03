@@ -7,7 +7,7 @@
 */
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
-    (void) tree;
-
-    return(0);
+    if (tree == NULL)
+        return (NULL);
+    return(NULL);
 }
